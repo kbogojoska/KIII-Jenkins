@@ -4,7 +4,7 @@ node {
         checkout scm
     }
     stage('Build image') {
-       app = docker.build("anthony70/kiii-jenkins")
+       app = docker.build("kbogojoska/kiii-jenkins")
     }
     stage('Push image') {   
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -12,5 +12,4 @@ node {
             app.push("${env.BRANCH_NAME}-latest")
             // signal the orchestrator that there is a new version
         }
-    }
 }
